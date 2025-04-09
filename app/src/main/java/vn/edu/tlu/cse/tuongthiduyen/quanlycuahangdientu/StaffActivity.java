@@ -106,7 +106,6 @@ public class StaffActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     private void loadProducts() {

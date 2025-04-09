@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5CBE9"
@@ -9,7 +10,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Quản Lý Máy Tính"
+        android:text="Quản Lý Thiết Bị Điện Tử"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -18,14 +19,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Tên máy tính" />
+        android:hint="Tên máy tính"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/etProductType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:hint="Hãng" />
+        android:hint="Hãng"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/etProductPrice"
@@ -33,7 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Giá bán (VNĐ)"
-        android:inputType="number" />
+        android:inputType="number"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <EditText
         android:id="@+id/etProductQuantity"
@@ -41,7 +45,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint=" Số lượng tồn kho"
-        android:inputType="number" />
+        android:inputType="number"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/btnAddProduct"
@@ -71,5 +76,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:ignore="SpeakableTextPresentCheck" />
 </LinearLayout>

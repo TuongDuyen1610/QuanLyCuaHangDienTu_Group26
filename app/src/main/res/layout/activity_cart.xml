@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5CBE9"
@@ -18,21 +19,140 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/tvTotal"
+<!--    <TextView-->
+<!--        android:id="@+id/tvPromoCode"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Mã giảm giá"-->
+<!--        android:visibility="gone"-->
+<!--        android:textColor="#FF5722"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_marginTop="8dp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvPromoCode"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Mã giảm giá áp dụng: -"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:layout_marginTop="12dp"/>-->
+
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDiscountAmount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Giảm giá"-->
+<!--        android:visibility="gone"-->
+<!--        android:textColor="#4CAF50"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_marginTop="4dp" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvTotalAfterDiscount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Tổng sau giảm"-->
+<!--        android:visibility="gone"-->
+<!--        android:textColor="#3F51B5"-->
+<!--        android:textSize="16sp"-->
+<!--        android:layout_marginTop="4dp" />-->
+<!--    <TextView-->
+<!--        android:id="@+id/tvPromoCode"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Mã giảm giá: "-->
+<!--        android:visibility="gone"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="@android:color/holo_red_dark"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvDiscountAmount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Bạn được giảm: "-->
+<!--        android:visibility="gone"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="@android:color/holo_red_dark"/>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/tvTotalAfterDiscount"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Tổng sau giảm: "-->
+<!--        android:visibility="gone"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="@android:color/holo_green_dark"/>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:layout_marginTop="16dp"
-        android:text="Tổng tiền: 0 VND"
-        android:textSize="18sp" />
+        android:padding="16dp">
 
-    <Button
-        android:id="@+id/btnCheckout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="THANH TOÁN"
-        android:textSize="17sp" />
+        <TextView
+            android:id="@+id/tvPromoCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mã giảm giá:"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvDiscountAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bạn được giảm:"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvTotalAfterDiscount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tổng sau giảm:"
+            android:visibility="gone"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_green_dark"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tổng tiền: 0 VND"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btnCheckout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="THANH TOÁN"
+            android:textSize="17sp" />
+        <TextView
+            android:id="@+id/tvThankYou"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Xin cảm ơn quý khách! Rất hân hạnh được phục vụ quý khách!"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            android:textColor="@android:color/holo_blue_light"
+            android:gravity="center"/>
+
+    </LinearLayout>
 </LinearLayout>

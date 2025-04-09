@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
@@ -10,7 +12,7 @@
 
     <TextView
         android:id="@+id/tvProductName"
-        android:layout_width="match_parent"
+        android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:text="Tên máy tính"
         android:textSize="16sp"
@@ -18,14 +20,14 @@
 
     <TextView
         android:id="@+id/tvProductType"
-        android:layout_width="match_parent"
+        android:layout_width="208dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Hãng: Dell" />
 
     <TextView
         android:id="@+id/tvProductPrice"
-        android:layout_width="match_parent"
+        android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Giá: 18000000 VND"
@@ -34,7 +36,7 @@
 
     <TextView
         android:id="@+id/tvProductQuantity"
-        android:layout_width="match_parent"
+        android:layout_width="209dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="Số lượng tồn kho : 10" />
@@ -70,4 +72,5 @@
             android:text="Xóa"
             android:visibility="gone" />
     </LinearLayout>
+
 </LinearLayout>

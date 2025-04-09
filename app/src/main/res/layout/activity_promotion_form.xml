@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E5CBE9"
@@ -14,28 +15,31 @@
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/hint_promotion_name"
             android:hint="@string/hint_promotion_name"
             android:inputType="text"
             android:minHeight="48dp"
-            android:contentDescription="@string/hint_promotion_name" />
+            tools:ignore="EditableContentDescCheck" />
 
         <EditText
             android:id="@+id/etMinOrder"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/hint_min_order"
             android:hint="@string/hint_min_order"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-            android:contentDescription="@string/hint_min_order" />
+            tools:ignore="EditableContentDescCheck" />
 
         <EditText
             android:id="@+id/etDiscount"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/hint_discount"
             android:hint="@string/hint_discount"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-            android:contentDescription="@string/hint_discount" />
+            tools:ignore="EditableContentDescCheck" />
 
         <Button
             android:id="@+id/btnSave"

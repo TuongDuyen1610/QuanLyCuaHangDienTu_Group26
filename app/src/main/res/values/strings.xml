@@ -26,4 +26,9 @@
         <string name="promotion_not_applicable">Đơn hàng chưa đủ điều kiện áp dụng khuyến mãi.</string>
         <string name="order_successful">Đặt hàng thành công!</string>
         <string name="order_failed">Đặt hàng thất bại. Vui lòng thử lại.</string>
+
+        <string name="promo_code_applied">Mã khuyến mãi được áp dụng:</string>
+        <string name="discount_amount">Tiền giảm: 0 VND</string>
+        <string name="final_total">Tổng sau giảm:</string>
+
 </resources>

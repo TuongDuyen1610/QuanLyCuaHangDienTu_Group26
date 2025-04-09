@@ -68,12 +68,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COLUMN_FULL_NAME + " TEXT)";
         db.execSQL(createUsersTable);
 
-        // Insert default admin user
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_EMAIL, "dd16102004@gmail.com");
-        values.put(COLUMN_PASSWORD, "001304");
-        db.insert(TABLE_USERS, null, values);
-
         // Tạo bảng products
         String createProductsTable = "CREATE TABLE " + TABLE_PRODUCTS + " (" +
                 COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -148,8 +142,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         userValues.put(COLUMN_FULL_NAME, "Trần Minh Quân");
         db.insert(TABLE_USERS, null, userValues);
 
-        // Thêm sản phẩm mẫu
+        userValues.put(COLUMN_EMAIL, "user3@email.com");
+        userValues.put(COLUMN_PASSWORD, "pass123");
+        userValues.put(COLUMN_ROLE, "Customer");
+        userValues.put(COLUMN_FULL_NAME, "Phạm Hồng Ngọc");
+        db.insert(TABLE_USERS, null, userValues);
+
+        userValues.put(COLUMN_EMAIL, "admin@store.com");
+        userValues.put(COLUMN_PASSWORD, "admin123");
+        userValues.put(COLUMN_ROLE, "Admin");
+        userValues.put(COLUMN_FULL_NAME, "Đỗ Thanh Tùng");
+        db.insert(TABLE_USERS, null, userValues);
+
+        // Thêm 25 sản phẩm mẫu
+
         ContentValues productValues = new ContentValues();
+        productValues.put(COLUMN_PRODUCT_NAME, "Samsung Galaxy S23 Ultra");
+        productValues.put(COLUMN_TYPE, "Samsung");
+        productValues.put(COLUMN_PRICE, 30900000);
+        productValues.put(COLUMN_QUANTITY, 9);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "iPhone 14 Pro Max");
+        productValues.put(COLUMN_TYPE, "APPLE");
+        productValues.put(COLUMN_PRICE, 33900000);
+        productValues.put(COLUMN_QUANTITY, 8);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
         productValues.put(COLUMN_PRODUCT_NAME, "Dell Inspiron 15");
         productValues.put(COLUMN_TYPE, "Dell");
         productValues.put(COLUMN_PRICE, 18000000);
@@ -160,6 +179,114 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         productValues.put(COLUMN_TYPE, "APPLE");
         productValues.put(COLUMN_PRICE, 28500000);
         productValues.put(COLUMN_QUANTITY, 5);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Xiaomi Pad 5");
+        productValues.put(COLUMN_TYPE, "Xiaomi");
+        productValues.put(COLUMN_PRICE, 9500000);
+        productValues.put(COLUMN_QUANTITY, 15);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Sony WH-1000XM5");
+        productValues.put(COLUMN_TYPE, "Sony");
+        productValues.put(COLUMN_PRICE, 8990000);
+        productValues.put(COLUMN_QUANTITY, 10);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "iPad Pro M2 11\"");
+        productValues.put(COLUMN_TYPE, "APPLE");
+        productValues.put(COLUMN_PRICE, 27900000);
+        productValues.put(COLUMN_QUANTITY, 5);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Mac Mini M2");
+        productValues.put(COLUMN_TYPE, "APPLE");
+        productValues.put(COLUMN_PRICE, 18900000);
+        productValues.put(COLUMN_QUANTITY, 4);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Asus ROG Phone 7");
+        productValues.put(COLUMN_TYPE, "ASUS");
+        productValues.put(COLUMN_PRICE, 21900000);
+        productValues.put(COLUMN_QUANTITY, 6);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "MSI Gaming GF63");
+        productValues.put(COLUMN_TYPE, "MSI");
+        productValues.put(COLUMN_PRICE, 17500000);
+        productValues.put(COLUMN_QUANTITY, 7);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Acer Nitro 5");
+        productValues.put(COLUMN_TYPE, "Acer");
+        productValues.put(COLUMN_PRICE, 16500000);
+        productValues.put(COLUMN_QUANTITY, 6);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Logitech MX Master 3S");
+        productValues.put(COLUMN_TYPE, "Logitech");
+        productValues.put(COLUMN_PRICE, 2690000);
+        productValues.put(COLUMN_QUANTITY, 20);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Razer BlackWidow V4");
+        productValues.put(COLUMN_TYPE, "Razer");
+        productValues.put(COLUMN_PRICE, 3590000);
+        productValues.put(COLUMN_QUANTITY, 10);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Apple Watch Series 9");
+        productValues.put(COLUMN_TYPE, "APPLE");
+        productValues.put(COLUMN_PRICE, 11900000);
+        productValues.put(COLUMN_QUANTITY, 6);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Kindle Paperwhite Gen 11");
+        productValues.put(COLUMN_TYPE, "Amazon");
+        productValues.put(COLUMN_PRICE, 3790000);
+        productValues.put(COLUMN_QUANTITY, 8);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Canon EOS M50 Mark II");
+        productValues.put(COLUMN_TYPE, "Canon");
+        productValues.put(COLUMN_PRICE, 17400000);
+        productValues.put(COLUMN_QUANTITY, 3);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "GoPro HERO12 Black");
+        productValues.put(COLUMN_TYPE, "GoPro");
+        productValues.put(COLUMN_PRICE, 10900000);
+        productValues.put(COLUMN_QUANTITY, 5);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "DJI Osmo Mobile 6");
+        productValues.put(COLUMN_TYPE, "DJI");
+        productValues.put(COLUMN_PRICE, 3390000);
+        productValues.put(COLUMN_QUANTITY, 10);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Philips Hue Starter Kit");
+        productValues.put(COLUMN_TYPE, "Philips");
+        productValues.put(COLUMN_PRICE, 2990000);
+        productValues.put(COLUMN_QUANTITY, 12);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "TP-Link Deco X60 (3-pack)");
+        productValues.put(COLUMN_TYPE, "TP-Link");
+        productValues.put(COLUMN_PRICE, 5790000);
+        productValues.put(COLUMN_QUANTITY, 4);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Samsung Galaxy Tab S9");
+        productValues.put(COLUMN_TYPE, "Samsung");
+        productValues.put(COLUMN_PRICE, 19900000);
+        productValues.put(COLUMN_QUANTITY, 7);
+        db.insert(TABLE_PRODUCTS, null, productValues);
+
+        productValues.put(COLUMN_PRODUCT_NAME, "Beats Studio Buds+");
+        productValues.put(COLUMN_TYPE, "Beats");
+        productValues.put(COLUMN_PRICE, 4990000);
+        productValues.put(COLUMN_QUANTITY, 11);
         db.insert(TABLE_PRODUCTS, null, productValues);
 
         productValues.put(COLUMN_PRODUCT_NAME, "HP Pavilion Gaming");
@@ -211,12 +338,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             // Dữ liệu 2
             values.clear();
             values.put(COLUMN_ID, "PROMO002");
-            values.put(COLUMN_TITLE, "Khuyến mãi Sinh Nhật");
+            values.put(COLUMN_TITLE, "Khuyến mãi Sinh Nhật Cửa Hàng");
+            values.put(COLUMN_MIN_ORDER, 300000);
+            values.put(COLUMN_DISCOUNT, 18.0); // Giảm 18%
+            db.insert(TABLE_PROMOTIONS, null, values);
+
+            // Dữ liệu 3
+            values.clear();
+            values.put(COLUMN_ID, "PROMO002");
+            values.put(COLUMN_TITLE, "Khuyến mãi Mừng Xuân Sang ");
+            values.put(COLUMN_MIN_ORDER, 300000);
+            values.put(COLUMN_DISCOUNT, 10.0); // Giảm 10%
+            db.insert(TABLE_PROMOTIONS, null, values);
+
+            // Dữ liệu 4
+            values.clear();
+            values.put(COLUMN_ID, "PROMO002");
+            values.put(COLUMN_TITLE, "Khuyến mãi Ngày Phụ Nữ Việt Nam");
             values.put(COLUMN_MIN_ORDER, 300000);
             values.put(COLUMN_DISCOUNT, 15.0); // Giảm 15%
             db.insert(TABLE_PROMOTIONS, null, values);
 
-            // Dữ liệu 3
+
+            // Dữ liệu 5
             values.clear();
             values.put(COLUMN_ID, "PROMO003");
             values.put(COLUMN_TITLE, "Giảm Giá Cuối Năm");
@@ -429,4 +573,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete("cart_table", null, null); // Xóa tất cả các bản ghi trong bảng giỏ hàng
         db.close();
     }
+    public Promotion getBestPromotion(double total) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Promotion bestPromo = null;
+        Cursor cursor = db.rawQuery(
+                "SELECT * FROM " + TABLE_PROMOTIONS + " WHERE " + COLUMN_MIN_ORDER + " <= ? ORDER BY " + COLUMN_DISCOUNT + " DESC LIMIT 1",
+                new String[]{String.valueOf(total)}
+        );
+
+        if (cursor.moveToFirst()) {
+            bestPromo = new Promotion(
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_MIN_ORDER)),
+                    cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_DISCOUNT))
+            );
+        }
+
+        cursor.close();
+        db.close();
+        return bestPromo;
+    }
+
+
 }

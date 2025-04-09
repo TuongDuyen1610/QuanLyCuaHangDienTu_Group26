@@ -62,5 +62,6 @@ public class CustomerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        return;
     }
 }

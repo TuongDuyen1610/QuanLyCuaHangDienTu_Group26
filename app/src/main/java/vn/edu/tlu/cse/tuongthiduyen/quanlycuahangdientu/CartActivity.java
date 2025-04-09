@@ -18,7 +18,7 @@ import java.util.Locale;
 //hiển thị giỏ hàng, tính tổng tiền và xử lý thanh toán.
 public class CartActivity extends AppCompatActivity {
     private RecyclerView rvCart;  //Hiển thị danh sách các sản phẩm trong giỏ hàng.
-    private TextView tvTotal;
+    private TextView tvPromoCode, tvDiscountAmount, tvTotalAfterDiscount, tvTotal;
     private Button btnCheckout;
     private DatabaseHelper dbHelper; // Sử dụng DatabaseHelper
     private CartAdapter cartAdapter;
@@ -33,6 +33,11 @@ public class CartActivity extends AppCompatActivity {
         rvCart = findViewById(R.id.rvCart);
         tvTotal = findViewById(R.id.tvTotal);
         btnCheckout = findViewById(R.id.btnCheckout);
+        tvPromoCode = findViewById(R.id.tvPromoCode);
+        tvDiscountAmount = findViewById(R.id.tvDiscountAmount);
+        tvTotalAfterDiscount = findViewById(R.id.tvTotalAfterDiscount);
+
+        btnCheckout.setOnClickListener(view -> applyBestPromotion());
         dbHelper = new DatabaseHelper(this); // Khởi tạo DatabaseHelper
 
         //. Email lấy ds sp trong giỏ hàng.
@@ -42,7 +47,9 @@ public class CartActivity extends AppCompatActivity {
         rvCart.setLayoutManager(new LinearLayoutManager(this));
         loadCart(); // hiển thị dssp trong giỏ hàng.
 
-        //pay->check cart
+
+
+//        //pay->check cart
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,14 +58,117 @@ public class CartActivity extends AppCompatActivity {
                     return;
                 }
 
-                int total = calculateTotal();
+                int total = calculateTotal();  // Tổng tiền trước khi giảm
+                Promotion bestPromo = dbHelper.getBestPromotion(total);  // Lấy mã khuyến mãi tốt nhất
+
+                double discount = 0;
+                String promoMessage = "";
+                String promoCode = "Không có";
+
+                if (bestPromo != null) {
+                    discount = total * (bestPromo.getDiscountAmount() / 100.0);
+                    promoCode = bestPromo.getTitle(); // Hoặc bestPromo.getPromoCode()
+                    promoMessage = "Đã áp dụng mã: " + promoCode + "\nGiảm: " + formatCurrency(discount);
+                } else {
+                    promoMessage = "Không có mã giảm giá nào phù hợp.";
+                }
+
+                double totalAfterDiscount = total - discount;
+
+                // ✅ Hiển thị các TextView
+                tvPromoCode.setVisibility(View.VISIBLE);
+                tvPromoCode.setText("Mã giảm giá: " + promoCode);
+
+                tvDiscountAmount.setVisibility(View.VISIBLE);
+                tvDiscountAmount.setText("Bạn được giảm: " + formatCurrency(discount));
+
+                tvTotalAfterDiscount.setVisibility(View.VISIBLE);
+                tvTotalAfterDiscount.setText("Tổng sau giảm: " + formatCurrency(totalAfterDiscount));
+
+                // ✅ Lưu đơn hàng vào database
                 String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-                dbHelper.createOrder(userEmail, currentDate, total, "Đã thanh toán");
+                dbHelper.createOrder(userEmail, currentDate, (int) totalAfterDiscount, "Đã thanh toán");
+
+                // ✅ Xóa giỏ hàng
                 dbHelper.clearCart(userEmail);
-                Toast.makeText(CartActivity.this, "Thanh toán thành công!", Toast.LENGTH_SHORT).show();
                 loadCart();
+
+                Toast.makeText(CartActivity.this,
+                        promoMessage + "\nTổng thanh toán: " + formatCurrency(totalAfterDiscount),
+                        Toast.LENGTH_LONG).show();
             }
         });
+//        btnCheckout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (cartItems.isEmpty()) {
+//                    Toast.makeText(CartActivity.this, "Giỏ hàng trống!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                int total = calculateTotal();  // Tổng tiền trước khi giảm giá
+//                Promotion bestPromo = dbHelper.getBestPromotion(total);  // Lấy khuyến mãi phù hợp nhất
+//
+//                double discount = 0;
+//                String promoMessage = "";
+//
+//                if (bestPromo != null) {
+//                    discount = total * (bestPromo.getDiscountAmount() / 100.0);
+//                    promoMessage = "Đã áp dụng mã khuyến mãi: " + bestPromo.getTitle() + "\n"
+//                            + "Giảm: " + formatCurrency(discount) + "\n";
+//                }
+//
+//                double totalAfterDiscount = total - discount;
+//
+//                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+//                dbHelper.createOrder(userEmail, currentDate, (int) totalAfterDiscount, "Đã thanh toán");
+//                dbHelper.clearCart(userEmail);
+//                loadCart();
+//
+//                Toast.makeText(CartActivity.this,
+//                        promoMessage + "Tổng thanh toán: " + formatCurrency(totalAfterDiscount),
+//                        Toast.LENGTH_LONG).show();
+//            }
+//        });
+
+
+
+//        btnCheckout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (cartItems.isEmpty()) {
+//                    Toast.makeText(CartActivity.this, "Giỏ hàng trống!", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                int total = calculateTotal();
+//                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+//                dbHelper.createOrder(userEmail, currentDate, total, "Đã thanh toán");
+//                dbHelper.clearCart(userEmail);
+//                Toast.makeText(CartActivity.this, "Thanh toán thành công!", Toast.LENGTH_SHORT).show();
+//                loadCart();
+//            }
+//        });
+    }
+    private void applyBestPromotion() {
+        String promoCode = "DISCOUNT10";
+        double discount = 0.1; // 10%
+
+        double totalAmount = 100000;
+        double discountAmount = totalAmount * discount;
+        double totalAfterDiscount = totalAmount - discountAmount;
+
+        tvPromoCode.setVisibility(View.VISIBLE);
+        tvPromoCode.setText("Mã giảm giá: " + promoCode);
+
+        tvDiscountAmount.setVisibility(View.VISIBLE);
+        tvDiscountAmount.setText("Bạn được giảm: " + discountAmount + " VND");
+
+        tvTotalAfterDiscount.setVisibility(View.VISIBLE);
+        tvTotalAfterDiscount.setText("Tổng sau giảm: " + totalAfterDiscount + " VND");
+    }
+    private String formatCurrency(double amount) {
+            return String.format("%,.0f VND", amount);
     }
 
     private void loadCart() {
