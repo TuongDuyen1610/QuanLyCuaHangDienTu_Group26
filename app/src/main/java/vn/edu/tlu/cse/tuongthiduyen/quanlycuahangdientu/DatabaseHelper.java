@@ -345,7 +345,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             // Dữ liệu 3
             values.clear();
-            values.put(COLUMN_ID, "PROMO002");
+            values.put(COLUMN_ID, "PROMO003");
             values.put(COLUMN_TITLE, "Khuyến mãi Mừng Xuân Sang ");
             values.put(COLUMN_MIN_ORDER, 300000);
             values.put(COLUMN_DISCOUNT, 10.0); // Giảm 10%
@@ -353,7 +353,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             // Dữ liệu 4
             values.clear();
-            values.put(COLUMN_ID, "PROMO002");
+            values.put(COLUMN_ID, "PROMO004");
             values.put(COLUMN_TITLE, "Khuyến mãi Ngày Phụ Nữ Việt Nam");
             values.put(COLUMN_MIN_ORDER, 300000);
             values.put(COLUMN_DISCOUNT, 15.0); // Giảm 15%
@@ -362,7 +362,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             // Dữ liệu 5
             values.clear();
-            values.put(COLUMN_ID, "PROMO003");
+            values.put(COLUMN_ID, "PROMO005");
             values.put(COLUMN_TITLE, "Giảm Giá Cuối Năm");
             values.put(COLUMN_MIN_ORDER, 1000000);
             values.put(COLUMN_DISCOUNT, 20.0); // Giảm 20%
