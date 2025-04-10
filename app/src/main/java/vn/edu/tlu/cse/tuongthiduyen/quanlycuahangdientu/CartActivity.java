@@ -24,6 +24,7 @@ public class CartActivity extends AppCompatActivity {
     private CartAdapter cartAdapter;
     private String userEmail;
     private List<CartItem> cartItems;
+
 // gọi khi CartActivity khởi tạo.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,57 +99,7 @@ public class CartActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
         });
-//        btnCheckout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (cartItems.isEmpty()) {
-//                    Toast.makeText(CartActivity.this, "Giỏ hàng trống!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                int total = calculateTotal();  // Tổng tiền trước khi giảm giá
-//                Promotion bestPromo = dbHelper.getBestPromotion(total);  // Lấy khuyến mãi phù hợp nhất
-//
-//                double discount = 0;
-//                String promoMessage = "";
-//
-//                if (bestPromo != null) {
-//                    discount = total * (bestPromo.getDiscountAmount() / 100.0);
-//                    promoMessage = "Đã áp dụng mã khuyến mãi: " + bestPromo.getTitle() + "\n"
-//                            + "Giảm: " + formatCurrency(discount) + "\n";
-//                }
-//
-//                double totalAfterDiscount = total - discount;
-//
-//                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-//                dbHelper.createOrder(userEmail, currentDate, (int) totalAfterDiscount, "Đã thanh toán");
-//                dbHelper.clearCart(userEmail);
-//                loadCart();
-//
-//                Toast.makeText(CartActivity.this,
-//                        promoMessage + "Tổng thanh toán: " + formatCurrency(totalAfterDiscount),
-//                        Toast.LENGTH_LONG).show();
-//            }
-//        });
 
-
-
-//        btnCheckout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (cartItems.isEmpty()) {
-//                    Toast.makeText(CartActivity.this, "Giỏ hàng trống!", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-//
-//                int total = calculateTotal();
-//                String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-//                dbHelper.createOrder(userEmail, currentDate, total, "Đã thanh toán");
-//                dbHelper.clearCart(userEmail);
-//                Toast.makeText(CartActivity.this, "Thanh toán thành công!", Toast.LENGTH_SHORT).show();
-//                loadCart();
-//            }
-//        });
     }
     private void applyBestPromotion() {
         String promoCode = "DISCOUNT10";
@@ -167,6 +118,7 @@ public class CartActivity extends AppCompatActivity {
         tvTotalAfterDiscount.setVisibility(View.VISIBLE);
         tvTotalAfterDiscount.setText("Tổng sau giảm: " + totalAfterDiscount + " VND");
     }
+
     private String formatCurrency(double amount) {
             return String.format("%,.0f VND", amount);
     }
