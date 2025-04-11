@@ -22,20 +22,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     @NonNull
-    @Override
+    @Override               // tạo từng dòng trong RecyclerView bằng cách inflate layout item_cart.xml.
     public CartViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cart, parent, false);
         return new CartViewHolder(view);
     }
 
-    @Override
+    @Override    //gắn các giá trị từ CartItem vào các TextView trong item_cart.xml.
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
         CartItem item = cartItems.get(position);
         holder.tvCartProductName.setText(item.getProductName());
         holder.tvCartQuantity.setText("Số lượng: " + item.getQuantity());
         holder.tvCartPrice.setText("Giá: " + (item.getPrice() * item.getQuantity()) + " VND");
     }
-
+    // Trả về tổng số dòng = số sản phẩm trong giỏ
     @Override
     public int getItemCount() {
         return cartItems.size();

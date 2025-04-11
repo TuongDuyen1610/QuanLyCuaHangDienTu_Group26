@@ -101,10 +101,11 @@ public class CartActivity extends AppCompatActivity {
         });
 
     }
-    //hiển thị giá đẹp
+    //hiển thị giá đẹp, dễ nhìn
     private String formatCurrency(double amount) {
             return String.format("%,.0f VND", amount);
     }
+    //
     private void loadCart() {
         cartItems = dbHelper.getCartItems(userEmail);
         cartAdapter = new CartAdapter(this, cartItems);
