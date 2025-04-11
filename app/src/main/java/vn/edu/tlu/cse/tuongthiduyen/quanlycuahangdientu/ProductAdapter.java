@@ -44,7 +44,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         holder.tvProductQuantity.setText("Số lượng tồn kho: " + product.getQuantity());
 
         if (isCustomer) {
-            holder.btnAddToCart.setVisibility(View.VISIBLE);
+            holder.btnAddToCart.setVisibility(View.VISIBLE);//cho phép thêm đối với khách hàng
             holder.btnEditProduct.setVisibility(View.GONE);
             holder.btnDeleteProduct.setVisibility(View.GONE);
             holder.btnAddToCart.setOnClickListener(v -> listener.onAddToCartClick(product));

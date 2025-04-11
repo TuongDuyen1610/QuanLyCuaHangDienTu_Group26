@@ -124,6 +124,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private void insertSampleData(SQLiteDatabase db) {
         // Thêm người dùng mẫu
         ContentValues userValues = new ContentValues();
+        userValues.put(COLUMN_EMAIL, "dd16102004@gmail.com");
+        userValues.put(COLUMN_PASSWORD, "001304");
+        userValues.put(COLUMN_ROLE, "Admin");
+        userValues.put(COLUMN_FULL_NAME, "Tưởng Thị Duyên");
+        db.insert(TABLE_USERS, null, userValues);
+
         userValues.put(COLUMN_EMAIL, "staff@store.com");
         userValues.put(COLUMN_PASSWORD, "123456");
         userValues.put(COLUMN_ROLE, "Staff");
@@ -146,12 +152,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         userValues.put(COLUMN_PASSWORD, "pass123");
         userValues.put(COLUMN_ROLE, "Customer");
         userValues.put(COLUMN_FULL_NAME, "Phạm Hồng Ngọc");
-        db.insert(TABLE_USERS, null, userValues);
-
-        userValues.put(COLUMN_EMAIL, "admin@store.com");
-        userValues.put(COLUMN_PASSWORD, "admin123");
-        userValues.put(COLUMN_ROLE, "Admin");
-        userValues.put(COLUMN_FULL_NAME, "Đỗ Thanh Tùng");
         db.insert(TABLE_USERS, null, userValues);
 
         // Thêm 25 sản phẩm mẫu
@@ -576,7 +576,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Promotion getBestPromotion(double total) {
         SQLiteDatabase db = this.getReadableDatabase();
         Promotion bestPromo = null;
-        Cursor cursor = db.rawQuery(
+        Cursor cursor = db.rawQuery(                                                                //Sắp xếp theo discount giảm dần → lấy cái lớn nhất
                 "SELECT * FROM " + TABLE_PROMOTIONS + " WHERE " + COLUMN_MIN_ORDER + " <= ? ORDER BY " + COLUMN_DISCOUNT + " DESC LIMIT 1",
                 new String[]{String.valueOf(total)}
         );
@@ -594,6 +594,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return bestPromo;
     }
-
-
 }

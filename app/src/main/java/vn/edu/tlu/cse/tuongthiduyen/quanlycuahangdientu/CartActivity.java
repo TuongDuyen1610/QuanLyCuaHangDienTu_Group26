@@ -29,7 +29,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart); //tk gdien tp trong activity_cart.xml.
+        setContentView(R.layout.activity_cart);
 
         rvCart = findViewById(R.id.rvCart);
         tvTotal = findViewById(R.id.tvTotal);
@@ -38,15 +38,14 @@ public class CartActivity extends AppCompatActivity {
         tvDiscountAmount = findViewById(R.id.tvDiscountAmount);
         tvTotalAfterDiscount = findViewById(R.id.tvTotalAfterDiscount);
 
-        btnCheckout.setOnClickListener(view -> applyBestPromotion());
-        dbHelper = new DatabaseHelper(this); // Khởi tạo DatabaseHelper
+        dbHelper = new DatabaseHelper(this);
 
         //. Email lấy ds sp trong giỏ hàng.
         userEmail = getIntent().getStringExtra("user_email");
 
         // Thiết lập RecyclerView hiển thị dssp trong RecyclerView dạng dọc.
         rvCart.setLayoutManager(new LinearLayoutManager(this));
-        loadCart(); // hiển thị dssp trong giỏ hàng.
+        loadCart();     // hiển thị dssp trong giỏ hàng.
 
 
 
@@ -59,16 +58,17 @@ public class CartActivity extends AppCompatActivity {
                     return;
                 }
 
-                int total = calculateTotal();  // Tổng tiền trước khi giảm
-                Promotion bestPromo = dbHelper.getBestPromotion(total);  // Lấy mã khuyến mãi tốt nhất
-
+                int total = calculateTotal();  // Tính tổng tiền
+                Promotion bestPromo = dbHelper.getBestPromotion(total);  // Khởi tạo hàm getBestPromotion() trong DatabaseHelper return bestPromo
+                                                                        // Tìm mã khuyến mãi tốt nhất
                 double discount = 0;
                 String promoMessage = "";
                 String promoCode = "Không có";
 
                 if (bestPromo != null) {
-                    discount = total * (bestPromo.getDiscountAmount() / 100.0);
-                    promoCode = bestPromo.getTitle(); // Hoặc bestPromo.getPromoCode()
+                    discount = total * (bestPromo.getDiscountAmount() / 100.0); // Tính số tiền giảm , cách tinh là tổng tiền * khuyến mãi / 100
+                    // Khởi tạo hàm getDiscountAmount() trong Promotion để lấy giá trị khuyến mãi
+                    promoCode = bestPromo.getTitle();
                     promoMessage = "Đã áp dụng mã: " + promoCode + "\nGiảm: " + formatCurrency(discount);
                 } else {
                     promoMessage = "Không có mã giảm giá nào phù hợp.";
@@ -76,7 +76,11 @@ public class CartActivity extends AppCompatActivity {
 
                 double totalAfterDiscount = total - discount;
 
-                // ✅ Hiển thị các TextView
+                Toast.makeText(CartActivity.this,
+                        promoMessage + "\nTổng thanh toán: " + formatCurrency(totalAfterDiscount),
+                        Toast.LENGTH_LONG).show();
+
+                // ✅ Hiển thị các TextView lên màn hình -> MESSAGE KHUYẾN MÃI
                 tvPromoCode.setVisibility(View.VISIBLE);
                 tvPromoCode.setText("Mã giảm giá: " + promoCode);
 
@@ -86,43 +90,20 @@ public class CartActivity extends AppCompatActivity {
                 tvTotalAfterDiscount.setVisibility(View.VISIBLE);
                 tvTotalAfterDiscount.setText("Tổng sau giảm: " + formatCurrency(totalAfterDiscount));
 
-                // ✅ Lưu đơn hàng vào database
+                // ✅ Lưu đơn hàng vào database của bảng orders
                 String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
                 dbHelper.createOrder(userEmail, currentDate, (int) totalAfterDiscount, "Đã thanh toán");
 
                 // ✅ Xóa giỏ hàng
                 dbHelper.clearCart(userEmail);
                 loadCart();
-
-                Toast.makeText(CartActivity.this,
-                        promoMessage + "\nTổng thanh toán: " + formatCurrency(totalAfterDiscount),
-                        Toast.LENGTH_LONG).show();
             }
         });
 
     }
-    private void applyBestPromotion() {
-        String promoCode = "DISCOUNT10";
-        double discount = 0.1; // 10%
-
-        double totalAmount = 100000;
-        double discountAmount = totalAmount * discount;
-        double totalAfterDiscount = totalAmount - discountAmount;
-
-        tvPromoCode.setVisibility(View.VISIBLE);
-        tvPromoCode.setText("Mã giảm giá: " + promoCode);
-
-        tvDiscountAmount.setVisibility(View.VISIBLE);
-        tvDiscountAmount.setText("Bạn được giảm: " + discountAmount + " VND");
-
-        tvTotalAfterDiscount.setVisibility(View.VISIBLE);
-        tvTotalAfterDiscount.setText("Tổng sau giảm: " + totalAfterDiscount + " VND");
-    }
-
     private String formatCurrency(double amount) {
             return String.format("%,.0f VND", amount);
     }
-
     private void loadCart() {
         cartItems = dbHelper.getCartItems(userEmail);
         cartAdapter = new CartAdapter(this, cartItems);

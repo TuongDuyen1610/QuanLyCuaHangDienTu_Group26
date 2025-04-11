@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Thay shoppingDAO.login() và shoppingDAO.getUserRole() bằng dbHelper.login()
+                // dbHelper.login()
                 String role = dbHelper.login(email, password);
                 if (role != null) {
                     loggedInUserEmail = email;
@@ -47,9 +47,9 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent intent;
                     if (role.equals("Nhân viên")) {
-                        intent = new Intent(LoginActivity.this, StaffActivity.class); // Thay DashboardActivity bằng StaffActivity
+                        intent = new Intent(LoginActivity.this, StaffActivity.class); //  StaffActivity
                     } else {
-                        intent = new Intent(LoginActivity.this, CustomerActivity.class); // Thay DashboardActivity bằng CustomerActivity
+                        intent = new Intent(LoginActivity.this, CustomerActivity.class); // CustomerActivity
                     }
                     intent.putExtra("user_email", email);
                     startActivity(intent);

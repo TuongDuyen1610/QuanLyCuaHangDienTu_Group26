@@ -38,7 +38,7 @@ public class CustomerActivity extends AppCompatActivity {
             @Override
             public void onAddToCartClick(Product product) {
                 //Gọi để thêm sp vào giỏ hàng.() default 1
-                dbHelper.addToCart(userEmail, product.getId(), 1); //
+                dbHelper.addToCart(userEmail, product.getId(), 1);
                 Toast.makeText(CustomerActivity.this, "Đã thêm " + product.getName() + " vào giỏ hàng!", Toast.LENGTH_SHORT).show();
             }
 
@@ -52,6 +52,8 @@ public class CustomerActivity extends AppCompatActivity {
                 // NOT
             }
         });
+        // Gắn adapter vào RecyclerView để hiển thị, adapter render cuon từng dòng sản phẩm
+        // hiển thị lên màn hình NV -> DUYỆT TỪNG SP, KÈM NÚT SỬA XÓA; KHÁCH HÀNG -> DUYỆT TỪNG SP, KÈM NÚT THÊM VÀO GIỎ HÀNG
         rvProducts.setAdapter(productAdapter);
         //Xem cart -> CartActivity xđ giỏ hàng userEmail
         btnViewCart.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +64,5 @@ public class CustomerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        return;
     }
 }

@@ -58,7 +58,6 @@ public class PromotionFormActivity extends AppCompatActivity {
                 db.insert(DatabaseHelper.TABLE_PROMOTIONS, null, values);
                 Toast.makeText(this, "Đã thêm khuyến mãi!", Toast.LENGTH_SHORT).show();
             }
-
             db.close();
             finish();
         });
