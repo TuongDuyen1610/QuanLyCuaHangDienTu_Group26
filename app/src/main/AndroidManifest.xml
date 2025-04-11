@@ -30,9 +30,6 @@
             android:name=".CustomerActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
             android:name=".OrderListActivity"
             android:exported="false" />
         <activity
