@@ -7,11 +7,23 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Tiêu đề -->
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="ỨNG DỤNG QUẢN LÝ THIẾT BỊ ĐIỆN TỬ SMART GEAR OF MOBILE"
+        android:textColor="#530959"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <!-- Logo -->
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_gravity="center"
         android:contentDescription="logo"
         android:scaleType="fitCenter"
@@ -45,7 +57,7 @@
             android:id="@+id/buttonLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="8dp"
             android:text="LOGIN"
             android:textSize="16sp" />
 
@@ -53,7 +65,7 @@
             android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="SIGN UP"
             android:textSize="16sp" />
     </LinearLayout>
@@ -77,7 +89,7 @@
             android:id="@+id/editTextSignUpPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="17dp"
             android:hint="Password"
             android:inputType="textPassword" />
 
@@ -85,7 +97,7 @@
             android:id="@+id/editTextFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="17dp"
             android:hint="Full Name"
             android:inputType="textPersonName" />
 
@@ -93,20 +105,30 @@
             android:id="@+id/spinnerRole"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="15dp" />
 
         <Button
             android:id="@+id/buttonRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
             android:text="Register" />
 
         <Button
             android:id="@+id/buttonBackToLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:text="Back to Login" />
     </LinearLayout>
+    <!-- Dòng chữ mờ màu xám nhạt -->
+    <TextView
+        android:id="@+id/textCustomerHint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bạn đang ở với tư cách khách hàng?"
+        android:textColor="#888888"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginTop="12dp"/>
 </LinearLayout>
