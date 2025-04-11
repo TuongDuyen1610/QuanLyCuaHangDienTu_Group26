@@ -126,7 +126,7 @@
         android:id="@+id/textCustomerHint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bạn đang ở với tư cách khách hàng?"
+        android:text="Bạn chưa có tài khoản? Đăng ký ngay"
         android:textColor="#888888"
         android:textSize="14sp"
         android:gravity="center"
