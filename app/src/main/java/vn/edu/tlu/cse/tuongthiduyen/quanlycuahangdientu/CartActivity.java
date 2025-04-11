@@ -101,6 +101,7 @@ public class CartActivity extends AppCompatActivity {
         });
 
     }
+    //hiển thị giá đẹp
     private String formatCurrency(double amount) {
             return String.format("%,.0f VND", amount);
     }
